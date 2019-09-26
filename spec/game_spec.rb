@@ -68,7 +68,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    xit 'eat five flies' do
+    it 'eat five flies' do
       game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down
 
       expected_screen =
