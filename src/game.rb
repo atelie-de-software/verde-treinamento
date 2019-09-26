@@ -24,7 +24,7 @@ class Game
       ['=', '=', '=', '=', '=', '=', "\n"],
       ['=', '=', '=', '=', '=', '=', "\n"],
       ['*', '=', '=', '=', '=', '=', "\n"],
-      ['M', '=', '=', '=', '=', '=']
+      ['=', '=', '=', '=', '=', '=']
     ]
   end
 
@@ -38,13 +38,7 @@ class Game
 
   def tile_overwrite
     case @matrix[@frog_y][@frog_x]
-    when '='
-      @matrix[@frog_y][@frog_x] = 'X'
-      @matrix[4] = ['D', 'E', 'A', 'T', 'H']
-    when ':'
-      @matrix[@frog_y][@frog_x] = '#'
-      @matrix[4] = [' ', 'W', 'I', 'N', ' ']
-    when 'O'
+    when '*'
       @matrix[@frog_y][@frog_x] = 'B'
     else
       @matrix[@frog_y][@frog_x] = 'M'
