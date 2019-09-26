@@ -10,7 +10,7 @@ RSpec.describe Game do
         "======\n" +
         "======\n" +
         "*=====\n" +
-        "M     "
+        "M====="
       expect(game.screen).to eq(expected_screen)
     end
   end
