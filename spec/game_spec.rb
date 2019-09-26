@@ -18,7 +18,7 @@ RSpec.describe Game do
   describe 'frog moves to the right' do
     subject { game.right }
 
-    xit 'responds correctly' do
+    it 'responds correctly' do
       subject
 
       expected_screen =
