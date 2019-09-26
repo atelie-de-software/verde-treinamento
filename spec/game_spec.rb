@@ -31,36 +31,27 @@ RSpec.describe Game do
     end
   end
 
-  describe 'frog moves to a plant' do
-    subject do
-      game.right.right.up
-    end
+  describe 'frog catch the fly' do
+    xit 'from the begining and other fly shows up' do
+      game.up
 
-    xit 'responds correctly' do
-      subject
       expected_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==B==\n" +
-        "     "
+      "======\n" +
+      "======\n" +
+      "======\n" +
+      "M=====\n" +
+      "======"
       expect(game.screen).to eq(expected_screen)
-    end
-  end
 
-  describe 'frog falling into water' do
-    context 'from beginning of the game' do
-      xit 'dies moving up' do
-        game.up
+      game.tick
 
-        expected_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "X=O==\n" +
-        "DEATH"
-        expect(game.screen).to eq(expected_screen)
-      end
+      expected_screen =
+      "=====*\n" +
+      "======\n" +
+      "======\n" +
+      "M=====\n" +
+      "======"
+      expect(game.screen).to eq(expected_screen)
     end
 
     context 'from a plant' do
