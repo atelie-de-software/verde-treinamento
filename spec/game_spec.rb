@@ -32,7 +32,7 @@ RSpec.describe Game do
   end
 
   describe 'frog catch the fly' do
-    xit 'from the begining and other fly shows up' do
+    it 'from the begining and other fly shows up' do
       game.up
 
       expected_screen =
