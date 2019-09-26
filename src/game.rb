@@ -12,25 +12,16 @@ class Game
     ]
   end
 
-  def up
-    @frog_y -= 1 if @frog_y > 0
+  def move(dx: 0, dy: 0)
+    @frog_y = [[0, @frog_y + dy].max, 4].min
+    @frog_x = [[0, @frog_x + dx].max, 4].min
     self
   end
 
-  def down
-    @frog_y += 1  if @frog_y < 4
-    self
-  end
-
-  def left
-    @frog_x -= 1 if @frog_x > 0
-    self
-  end
-
-  def right
-    @frog_x += 1 if @frog_x < 4
-    self
-  end
+  def up()    move(dy: -1) end
+  def down()  move(dy:  1) end
+  def left()  move(dx: -1) end
+  def right() move(dx:  1) end
 
   def empty_matrix_first_map
     [
@@ -63,7 +54,7 @@ class Game
       @matrix[@frog_y][@frog_x] = 'X'
       @matrix[4] = ['D', 'E', 'A', 'T', 'H']
     when ':'
-      @matrix[@frog_y][@frog_x] = 'W'
+      @matrix[@frog_y][@frog_x] = '#'
       @matrix[4] = [' ', 'W', 'I', 'N', ' ']
     when 'O'
       @matrix[@frog_y][@frog_x] = 'B'
@@ -75,7 +66,7 @@ class Game
   def tick
     @ticks += 1
 
-    if @ticks.modulo(DEFAULT_TICK_SPEED) == 0
+    if @ticks.modulo(DEFAULT_TICK_SPEED).zero?
       @rocks.each do |rock|
         rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
 

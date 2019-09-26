@@ -1,17 +1,21 @@
+# frozen_string_literal: true
+
 require './src/game'
+
+def screen(*correct_screen)
+  expect(game.screen).to eq(correct_screen.join("\n"))
+end
 
 RSpec.describe Game do
   let!(:game) { Game.new }
 
   describe 'initial screen' do
     it 'is correct' do
-      expected_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "M    "
-      expect(game.screen).to eq(expected_screen)
+      screen ':::::',
+             '==O==',
+             '==O==',
+             '==O==',
+             'M    '
     end
   end
 
@@ -21,13 +25,11 @@ RSpec.describe Game do
     it 'responds correctly' do
       subject
 
-      expected_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==O==\n" +
-        " M   "
-      expect(game.screen).to eq(expected_screen)
+      screen ':::::',
+             '==O==',
+             '==O==',
+             '==O==',
+             ' M   '
     end
   end
 
@@ -38,13 +40,11 @@ RSpec.describe Game do
 
     it 'responds correctly' do
       subject
-      expected_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==B==\n" +
-        "     "
-      expect(game.screen).to eq(expected_screen)
+      screen ':::::',
+             '==O==',
+             '==O==',
+             '==B==',
+             '     '
     end
   end
 
@@ -53,13 +53,11 @@ RSpec.describe Game do
       it 'dies moving up' do
         game.up
 
-        expected_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "X=O==\n" +
-        "DEATH"
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '==O==',
+               '==O==',
+               'X=O==',
+               'DEATH'
       end
     end
 
@@ -72,28 +70,22 @@ RSpec.describe Game do
         moves_to_plant
         game.left
 
-        expected_screen =
-          ":::::\n" +
-          "==O==\n" +
-          "=XO==\n" +
-          "==O==\n" +
-          "DEATH"
-
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '==O==',
+               '=XO==',
+               '==O==',
+               'DEATH'
       end
 
       it 'die moving right' do
         moves_to_plant
         game.right
 
-        expected_screen =
-          ":::::\n" +
-          "==O==\n" +
-          "==OX=\n" +
-          "==O==\n" +
-          "DEATH"
-
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '==O==',
+               '==OX=',
+               '==O==',
+               'DEATH'
       end
     end
   end
@@ -104,13 +96,11 @@ RSpec.describe Game do
         10.times do
           game.tick
         end
-        expected_screen =
-          ":::::\n" +
-          "===O=\n" +
-          "=O===\n" +
-          "===O=\n" +
-          "M    "
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '===O=',
+               '=O===',
+               '===O=',
+               'M    '
       end
     end
 
@@ -119,13 +109,11 @@ RSpec.describe Game do
         20.times do
           game.tick
         end
-        expected_screen =
-          ":::::\n" +
-          "====O\n" +
-          "O====\n" +
-          "====O\n" +
-          "M    "
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '====O',
+               'O====',
+               '====O',
+               'M    '
       end
     end
 
@@ -134,13 +122,11 @@ RSpec.describe Game do
         30.times do
           game.tick
         end
-        expected_screen =
-          ":::::\n" +
-          "===O=\n" +
-          "=O===\n" +
-          "===O=\n" +
-          "M    "
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '===O=',
+               '=O===',
+               '===O=',
+               'M    '
       end
     end
   end
@@ -152,13 +138,11 @@ RSpec.describe Game do
         game.tick
       end
 
-      expected_screen =
-        ":::::\n" +
-        "===O=\n" +
-        "=O===\n" +
-        "===B=\n" +
-        "     "
-      expect(game.screen).to eq(expected_screen)
+      screen ':::::',
+             '===O=',
+             '=O===',
+             '===B=',
+             '     '
     end
   end
 
@@ -166,116 +150,101 @@ RSpec.describe Game do
     def wins_first_level(game)
       game.right.right.up.up.up.up
     end
-    
-    
+
     context 'before 5 ticks' do
       it 'shows victory screen' do
         wins_first_level(game)
-        expected_screen =
-          "::W::\n" +
-          "==O==\n" +
-          "==O==\n" +
-          "==O==\n" +
-          " WIN "
-        expect(game.screen).to eq(expected_screen)
+
+        screen '::#::',
+               '==O==',
+               '==O==',
+               '==O==',
+               ' WIN '
       end
     end
-    
+
     context 'after 5 ticks' do
       xit 'renders second level with moving cars' do
         wins_first_level(game)
-        
+
         5.times do
           game.tick
         end
 
-        expected_screen =
-          ":::::\n" +
-          "___Q_\n" +
-          "_C___\n" +
-          "___Q_\n" +
-          "  M  "
-        expect(game.screen).to eq(expected_screen)
-
-        expected_screen =
-          ":::::\n" +
-          "__Q__\n" +
-          "__C__\n" +
-          "__Q__\n" +
-          "  E  "
+        screen ':::::',
+               '___Q_',
+               '_C___',
+               '___Q_',
+               '  E  '
 
         8.times do
           game.tick
         end
 
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '__Q__',
+               '__C__',
+               '__Q__',
+               '  E  '
       end
 
       xit 'after a while cars disapear from one side and apear at the other' do
         wins_first_level(game)
-        
+
         5.times do
           game.tick
         end
 
-        (8*3).times do
+        (8 * 3).times do
           game.tick
         end
 
-        expected_screen =
-          ":::::\n" +
-          "Q____\n" +
-          "____C\n" +
-          "Q____\n" +
-          "  E  "
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               'Q____',
+               '____C',
+               'Q____',
+               '  E  '
 
-        (8).times do
+        8.times do
           game.tick
         end
 
-        expected_screen =
-          ":::::\n" +
-          "____Q\n" +
-          "C____\n" +
-          "____Q\n" +
-          "  E  "
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '____Q',
+               'C____',
+               '____Q',
+               '  E  '
       end
 
       xit 'frog dies if hit by a car coming from the right' do
         wins_first_level(game)
-        
+
         5.times do
           game.tick
         end
 
         game.up
 
-        expected_screen =
-          ":::::\n" +
-          "___Q_\n" +
-          "_C___\n" +
-          "__SQ_\n" +
-          "     "
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '___Q_',
+               '_C___',
+               '__SQ_',
+               '     '
 
         8.times do
           game.tick
         end
 
-        expected_screen =
-          ":::::\n" +
-          "__Q__\n" +
-          "__C__\n" +
-          "__X__\n" +
-          "DEATH"
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '__Q__',
+               '__C__',
+               '__X__',
+               'DEATH'
       end
 
       xit 'frog dies if hit by a car coming from the left' do
         wins_first_level(game)
-        
+
         5.times do
           game.tick
         end
@@ -283,25 +252,50 @@ RSpec.describe Game do
         game.up
         game.up
 
-        expected_screen =
-          ":::::\n" +
-          "___Q_\n" +
-          "_CS__\n" +
-          "___Q_\n" +
-          "     "
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '___Q_',
+               '_CS__',
+               '___Q_',
+               '     '
 
         8.times do
           game.tick
         end
 
-        expected_screen =
-          ":::::\n" +
-          "__Q__\n" +
-          "__X__\n" +
-          "__Q__\n" +
-          "DEATH"
-        expect(game.screen).to eq(expected_screen)
+        screen ':::::',
+               '__Q__',
+               '__X__',
+               '__Q__',
+               'DEATH'
+      end
+
+      xit 'frog wins second level if it crosses the map' do
+        wins_first_level(game)
+
+        5.times do
+          game.tick
+        end
+
+        game.up
+        game.up
+        game.up
+        game.up
+
+        screen '::#::',
+               '___Q_',
+               '_C___',
+               '___Q_',
+               ' WIN '
+
+        8.times do
+          game.tick
+        end
+
+        screen '::#::',
+               '__Q__',
+               '__C__',
+               '__Q__',
+               ' WIN '
       end
     end
   end
