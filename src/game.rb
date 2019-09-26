@@ -7,13 +7,16 @@ class Game
     @frog_y = 4
     @flies = [
       {x: 0, y: 3},
-      {x: 5, y: 0}
+      {x: 5, y: 0},
+      {x: 1, y: 2}
     ]
   end
 
   def move(dx: 0, dy: 0)
     @frog_y = [[0, @frog_y + dy].max, 4].min
-    @frog_x = [[0, @frog_x + dx].max, 4].min
+    @frog_x = [[0, @frog_x + dx].max, 5].min
+    screen
+    
     self
   end
 
@@ -51,11 +54,6 @@ class Game
 
   def tick
     @ticks += 1
-
-    if @ticks.modulo(DEFAULT_TICK_SPEED).zero?
-
-    end
-
     self
   end
 end
