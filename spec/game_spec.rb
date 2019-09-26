@@ -54,6 +54,18 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
+    xit 'move two times up' do
+      game.up.up
+
+      expected_screen =
+      "=====*\n" +
+      "======\n" +
+      "M=====\n" +
+      "======\n" +
+      "======"
+      expect(game.screen).to eq(expected_screen)
+    end
+
     context 'from a plant' do
       subject(:moves_to_plant) do
         game.right.right.up.up
