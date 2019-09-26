@@ -5,22 +5,9 @@ SPRITE_WIDTH = 62.freeze
 SPRITE_HEIGHT = 62.freeze
 
 SPRITES = {
-  'D': ['assets/images/start.png'],
-  'E': ['assets/images/start.png'],
-  'A': ['assets/images/start.png'],
-  'T': ['assets/images/start.png'],
-  'H': ['assets/images/start.png'],
-  'W': ['assets/images/start.png'],
-  'I': ['assets/images/start.png'],
-  'N': ['assets/images/start.png'],
-  '=': ['assets/images/water.png'],
-  ' ': ['assets/images/start.png'],
-  ':': ['assets/images/finish.png'],
-  'X': ['assets/images/water.png', 'assets/images/dead.png'],
-  'M': ['assets/images/start.png', 'assets/images/frog.png'],
-  'O': ['assets/images/water.png', 'assets/images/leaf.png'],
-  'B': ['assets/images/water.png', 'assets/images/leaf.png', 'assets/images/frog.png'],
-  '#': ['assets/images/finish.png', 'assets/images/frog.png']
+  '=': ['assets/images/background.png'],
+  'M': ['assets/images/background.png', 'assets/images/frog.png'],
+  '*': ['assets/images/background.png', 'assets/images/fly.png']
 }
 
 game = Game.new
@@ -33,7 +20,7 @@ update do
   puts game_screen
   game_screen.split("\n").each_with_index do |lines, index_y|
     lines.split('').each_with_index do |sprite, index_x|
-      render_sprite(sprite, index_x, index_y)      
+      render_sprite(sprite, index_x, index_y)
     end
   end
   sleep 0.2
