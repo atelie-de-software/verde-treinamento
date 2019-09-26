@@ -10,6 +10,8 @@ SPRITES = {
   '*': ['assets/images/background.png', 'assets/images/fly.png']
 }
 
+set width: SPRITE_WIDTH * 6, height: SPRITE_HEIGHT * 5
+
 game = Game.new
 
 update do
