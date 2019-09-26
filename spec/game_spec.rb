@@ -22,11 +22,11 @@ RSpec.describe Game do
       subject
 
       expected_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==O==\n" +
-        " M   "
+        "======\n" +
+        "======\n" +
+        "======\n" +
+        "*=====\n" +
+        "=M===="
       expect(game.screen).to eq(expected_screen)
     end
   end
