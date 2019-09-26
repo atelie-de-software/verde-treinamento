@@ -5,11 +5,6 @@ class Game
     @ticks = 0
     @frog_x = 0
     @frog_y = 4
-    @rocks = [
-      { x: 2, y: 1, dir: 1},
-      { x: 2, y: 2, dir: -1},
-      { x: 2, y: 3, dir: 1}
-    ]
   end
 
   def move(dx: 0, dy: 0)
@@ -25,27 +20,20 @@ class Game
 
   def empty_matrix_first_map
     [
-      [':', ':', ':', ':', ':', "\n"],
-      ['=', '=', '=', '=', '=', "\n"],
-      ['=', '=', '=', '=', '=', "\n"],
-      ['=', '=', '=', '=', '=', "\n"],
-      [' ', ' ', ' ', ' ', ' ']
+      ['=', '=', '=', '=', '=', '=', "\n"],
+      ['=', '=', '=', '=', '=', '=', "\n"],
+      ['=', '=', '=', '=', '=', '=', "\n"],
+      ['*', '=', '=', '=', '=', '=', "\n"],
+      ['M', '=', '=', '=', '=', '=']
     ]
   end
 
   def screen
     @matrix = empty_matrix_first_map
 
-    game_engine
     tile_overwrite
 
     @matrix.flatten.join('')
-  end
-
-  def game_engine
-    @rocks.each do |rock|
-      @matrix[rock[:y]][rock[:x]] = 'O'
-    end
   end
 
   def tile_overwrite
@@ -67,12 +55,7 @@ class Game
     @ticks += 1
 
     if @ticks.modulo(DEFAULT_TICK_SPEED).zero?
-      @rocks.each do |rock|
-        rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
 
-        @frog_x += rock[:dir] if rock[:x] == @frog_x && rock[:y] == @frog_y
-        rock[:x] += rock[:dir]
-      end
     end
 
     self
