@@ -66,6 +66,28 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
+    xit 'move to top right of screen and shows another fly' do
+      game.up.up.up.up.up.right.right.right.right.right
+
+      expected_screen =
+      "=====M\n" +
+      "======\n" +
+      "======\n" +
+      "======\n" +
+      "======"
+      expect(game.screen).to eq(expected_screen)
+
+      game.tick
+
+      expected_screen =
+      "=====M\n" +
+      "======\n" +
+      "=*====\n" +
+      "======\n" +
+      "======"
+      expect(game.screen).to eq(expected_screen)
+    end
+
     context 'from a plant' do
       subject(:moves_to_plant) do
         game.right.right.up.up
