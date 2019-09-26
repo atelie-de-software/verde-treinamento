@@ -36,16 +36,6 @@ RSpec.describe Game do
       game.up
 
       expected_screen =
-      "======\n" +
-      "======\n" +
-      "======\n" +
-      "M=====\n" +
-      "======"
-      expect(game.screen).to eq(expected_screen)
-
-      game.tick
-
-      expected_screen =
       "=====*\n" +
       "======\n" +
       "======\n" +
@@ -54,30 +44,8 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    xit 'move two times up' do
-      game.up.up
-
-      expected_screen =
-      "=====*\n" +
-      "======\n" +
-      "M=====\n" +
-      "======\n" +
-      "======"
-      expect(game.screen).to eq(expected_screen)
-    end
-
-    xit 'move to top right of screen and shows another fly' do
+    it 'move to top right of screen and shows another fly' do
       game.up.up.up.up.up.right.right.right.right.right
-
-      expected_screen =
-      "=====M\n" +
-      "======\n" +
-      "======\n" +
-      "======\n" +
-      "======"
-      expect(game.screen).to eq(expected_screen)
-
-      game.tick
 
       expected_screen =
       "=====M\n" +
@@ -90,16 +58,6 @@ RSpec.describe Game do
 
     xit 'move back to down after eat three flies' do
       game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left
-
-      expected_screen =
-      "======\n" +
-      "======\n" +
-      "=M====\n" +
-      "======\n" +
-      "======"
-      expect(game.screen).to eq(expected_screen)
-
-      game.tick
 
       expected_screen =
       "======\n" +
