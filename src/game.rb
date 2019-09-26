@@ -9,7 +9,8 @@ class Game
       {x: 0, y: 3},
       {x: 5, y: 0},
       {x: 1, y: 2},
-      {x: 4, y: 4}
+      {x: 4, y: 4},
+      {x: 1, y: 0}
     ]
   end
 
@@ -38,19 +39,19 @@ class Game
 
   def screen
     @matrix = empty_matrix_first_map
-
     tile_overwrite
-
     @matrix.flatten.join('')
   end
 
   def tile_overwrite
+    eat_fly if @flies.any?
+    @matrix[@frog_y][@frog_x] = 'M'
+  end
+
+  def eat_fly
     active_fly = @flies.first
     @matrix[active_fly[:y]][active_fly[:x]] = '*'
-
     @flies.shift if @matrix[@frog_y][@frog_x] == '*'
-
-    @matrix[@frog_y][@frog_x] = 'M'
   end
 
   def tick
