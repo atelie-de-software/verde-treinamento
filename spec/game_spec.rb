@@ -31,7 +31,7 @@ RSpec.describe Game do
     end
   end
 
-  describe 'frog catch the fly' do
+  describe 'frog catch the flies' do
     it 'from the begining and other fly shows up' do
       game.up
 
@@ -44,7 +44,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    it 'move to top right of screen and shows another fly' do
+    it 'eat three flies' do
       game.up.up.up.up.up.right.right.right.right.right
 
       expected_screen =
@@ -56,7 +56,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    it 'move back to down after eat three flies' do
+    it 'eat four flies' do
       game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left
 
       expected_screen =
@@ -65,6 +65,31 @@ RSpec.describe Game do
       "=M====\n" +
       "======\n" +
       "====*="
+      expect(game.screen).to eq(expected_screen)
+    end
+
+    xit 'eat five flies' do
+      game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down
+
+      expected_screen =
+      "=*====\n" +
+      "======\n" +
+      "======\n" +
+      "======\n" +
+      "====M="
+      expect(game.screen).to eq(expected_screen)
+    end
+
+
+    xit 'win the game' do
+      game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down.up.up.up.up.left.left.left
+
+      expected_screen =
+      "======\n" +
+      "======\n" +
+      "=WIN==\n" +
+      "======\n" +
+      "======"
       expect(game.screen).to eq(expected_screen)
     end
   end
