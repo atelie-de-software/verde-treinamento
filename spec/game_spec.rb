@@ -88,7 +88,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    xit 'move to top right of screen and shows another fly' do
+    xit 'move back to down after eat three flies' do
       game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left
 
       expected_screen =
