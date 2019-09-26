@@ -4,7 +4,7 @@ RSpec.describe Game do
   let!(:game) { Game.new }
 
   describe 'initial screen' do
-    xit 'is correct' do
+    it 'is correct' do
       expected_screen =
         "======\n" +
         "======\n" +
