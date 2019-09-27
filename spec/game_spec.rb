@@ -1,5 +1,11 @@
 require './src/game'
 
+def tick(vezes = 1)
+  vezes.times do
+    game.tick
+  end
+end
+
 RSpec.describe Game do
   let!(:game) { Game.new }
 
@@ -103,13 +109,15 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    xit 'win the game' do
+    xit 'end the game after 1 minute and show the result' do
       game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down.up.up.up.up.left.left.left
+
+      tick 30
 
       expected_screen =
       "======\n" +
       "======\n" +
-      "=WIN==\n" +
+      "==06==\n" +
       "======\n" +
       "======"
       expect(game.screen).to eq(expected_screen)
