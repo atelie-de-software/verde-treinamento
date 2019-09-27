@@ -12,6 +12,7 @@ class Game
       {x: 4, y: 4},
       {x: 1, y: 0}
     ]
+    @flies_eaten = 0
   end
 
   def move(dx: 0, dy: 0)
@@ -38,8 +39,10 @@ class Game
   end
 
   def screen
+    return @matrix.flatten.join('') if @ticks >= 30
+
     @matrix = empty_matrix_first_map
-    tile_overwrite
+    tile_overwrite 
     @matrix.flatten.join('')
   end
 
@@ -55,12 +58,25 @@ class Game
   end
 
   def change_fly
+    @flies_eaten += 1
     fly = @flies.shift
     @flies.push(fly)
   end
 
   def tick
     @ticks += 1
+
+    end_game if @ticks >= 30
+
     self
+  end
+
+  def end_game
+    @matrix = empty_matrix_first_map
+    flies_eaten_str = @flies_eaten.to_s.split('')
+
+    flies_eaten_str.unshift('0') if flies_eaten_str.count == 1
+    @matrix[2][2] = flies_eaten_str[0]
+    @matrix[2][3] = flies_eaten_str[1]
   end
 end

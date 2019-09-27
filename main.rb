@@ -7,7 +7,17 @@ SPRITE_HEIGHT = 62.freeze
 SPRITES = {
   '=': ['assets/images/background.png'],
   'M': ['assets/images/background.png', 'assets/images/frog.png'],
-  '*': ['assets/images/background.png', 'assets/images/fly.png']
+  '*': ['assets/images/background.png', 'assets/images/fly.png'],
+  '0': ['assets/images/background.png', 'assets/images/0.png'],
+  '1': ['assets/images/background.png', 'assets/images/1.png'],
+  '2': ['assets/images/background.png', 'assets/images/2.png'],
+  '3': ['assets/images/background.png', 'assets/images/3.png'],
+  '4': ['assets/images/background.png', 'assets/images/4.png'],
+  '5': ['assets/images/background.png', 'assets/images/5.png'],
+  '6': ['assets/images/background.png', 'assets/images/6.png'],
+  '7': ['assets/images/background.png', 'assets/images/7.png'],
+  '8': ['assets/images/background.png', 'assets/images/8.png'],
+  '9': ['assets/images/background.png', 'assets/images/9.png']
 }
 
 set width: SPRITE_WIDTH * 6, height: SPRITE_HEIGHT * 5
