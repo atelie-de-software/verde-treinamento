@@ -1,9 +1,22 @@
 require './src/game'
 
 def tick(vezes = 1)
-  vezes.times do
-    game.tick
-  end
+  vezes.times { game.tick }
+end
+
+def up(vezes = 1)
+  vezes.times { game.up }
+end
+
+def down(vezes = 1)
+  vezes.times { game.down }
+end
+
+def right(vezes = 1)
+  vezes.times { game.right }
+end
+def left(vezes = 1)
+  vezes.times { game.left }
 end
 
 RSpec.describe Game do
@@ -22,10 +35,8 @@ RSpec.describe Game do
   end
 
   describe 'frog moves to the right' do
-    subject { game.right }
-
     it 'responds correctly' do
-      subject
+      right 1
 
       expected_screen =
         "======\n" +
@@ -51,7 +62,8 @@ RSpec.describe Game do
     end
 
     it 'eat three flies' do
-      game.up.up.up.up.up.right.right.right.right.right
+      up 5
+      right 5
 
       expected_screen =
       "=====M\n" +
@@ -63,7 +75,10 @@ RSpec.describe Game do
     end
 
     it 'eat four flies' do
-      game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left
+      up 5
+      right 5
+      down 2
+      left 4
 
       expected_screen =
       "======\n" +
