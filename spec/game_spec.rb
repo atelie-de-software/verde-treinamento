@@ -102,7 +102,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    xit 'eat six flies' do
+    it 'eat six flies' do
       game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down.up.up.up.up.left.left.left
 
       expected_screen =
@@ -114,7 +114,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    xit 'eat seven flies' do
+    it 'eat seven flies' do
       game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down.up.up.up.up.left.left.left.left.down.down.down
       expected_screen =
       "=====*\n" +
