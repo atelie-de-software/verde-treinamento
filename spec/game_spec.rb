@@ -62,7 +62,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    it 'eat three flies' do
+    it 'eat two flies' do
       up 5
       right 5
 
@@ -75,7 +75,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    it 'eat four flies' do
+    it 'eat three flies' do
       up 5
       right 5
       down 2
@@ -90,8 +90,13 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    it 'eat five flies' do
-      game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down
+    it 'eat four flies' do
+      up 5
+      right 5
+      down 2
+      left 4
+      right 3
+      down 2
 
       expected_screen =
       "=*====\n" +
@@ -102,8 +107,15 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    it 'eat six flies' do
-      game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down.up.up.up.up.left.left.left
+    it 'eat five flies' do
+      up 5
+      right 5
+      down 2
+      left 4
+      right 3
+      down 2
+      up 4
+      left 3
 
       expected_screen =
       "=M====\n" +
@@ -114,8 +126,17 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    it 'eat seven flies' do
-      game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down.up.up.up.up.left.left.left.left.down.down.down
+    it 'eat six flies' do
+      up 5
+      right 5
+      down 2
+      left 4
+      right 3
+      down 2
+      up 4
+      left 4
+      down 3
+
       expected_screen =
       "=====*\n" +
       "======\n" +
@@ -126,7 +147,14 @@ RSpec.describe Game do
     end
 
     xit 'end the game after 1 minute and show the result' do
-      game.up.up.up.up.up.right.right.right.right.right.down.down.left.left.left.left.right.right.right.down.down.up.up.up.up.left.left.left
+      up 5
+      right 5
+      down 2
+      left 4
+      right 3
+      down 2
+      up 4
+      left 3
 
       tick 30
 
