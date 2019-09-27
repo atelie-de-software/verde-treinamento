@@ -146,7 +146,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    xit 'end the game after 1 minute and show the result' do
+    it 'end the game after 30 seconds and show the result' do
       up 5
       right 5
       down 2
@@ -167,7 +167,7 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
 
-    xit 'does not allow to move after the end of the game' do
+    it 'does not allow to move after the end of the game' do
       up 5
       right 5
       down 2
