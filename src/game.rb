@@ -51,7 +51,12 @@ class Game
   def eat_fly
     active_fly = @flies.first
     @matrix[active_fly[:y]][active_fly[:x]] = '*'
-    @flies.shift if @matrix[@frog_y][@frog_x] == '*'
+    change_fly if @matrix[@frog_y][@frog_x] == '*'
+  end
+
+  def change_fly
+    fly = @flies.shift
+    @flies.push(fly)
   end
 
   def tick
