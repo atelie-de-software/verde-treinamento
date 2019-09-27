@@ -1,5 +1,6 @@
 class Game
   DEFAULT_TICK_SPEED = 10.freeze
+  TOTAL_TICKS = 150.freeze
 
   def initialize
     @ticks = 0
@@ -13,7 +14,6 @@ class Game
       {x: 1, y: 0}
     ]
     @flies_eaten = 0
-    @total_ticks = 150
   end
 
   def move(dx: 0, dy: 0)
@@ -40,15 +40,15 @@ class Game
   end
 
   def screen
-    return @matrix.flatten.join('') if @ticks >= @total_ticks
+    return @matrix.flatten.join('') if @ticks >= TOTAL_TICKS
 
     @matrix = empty_matrix_first_map
-    tile_overwrite 
+    tile_overwrite
     @matrix.flatten.join('')
   end
 
   def tile_overwrite
-    eat_fly if @flies.any?
+    eat_fly
     @matrix[@frog_y][@frog_x] = 'M'
   end
 
@@ -67,7 +67,7 @@ class Game
   def tick
     @ticks += 1
 
-    end_game if @ticks >= @total_ticks
+    end_game if @ticks >= TOTAL_TICKS
 
     self
   end
