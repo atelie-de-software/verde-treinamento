@@ -13,6 +13,7 @@ class Game
       {x: 1, y: 0}
     ]
     @flies_eaten = 0
+    @total_ticks = 150
   end
 
   def move(dx: 0, dy: 0)
@@ -39,7 +40,7 @@ class Game
   end
 
   def screen
-    return @matrix.flatten.join('') if @ticks >= 30
+    return @matrix.flatten.join('') if @ticks >= @total_ticks
 
     @matrix = empty_matrix_first_map
     tile_overwrite 
@@ -66,7 +67,7 @@ class Game
   def tick
     @ticks += 1
 
-    end_game if @ticks >= 30
+    end_game if @ticks >= @total_ticks
 
     self
   end
