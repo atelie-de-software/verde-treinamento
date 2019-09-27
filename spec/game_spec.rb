@@ -166,5 +166,36 @@ RSpec.describe Game do
       "======"
       expect(game.screen).to eq(expected_screen)
     end
+
+    xit 'does not allow to move after the end of the game' do
+      up 5
+      right 5
+      down 2
+      left 4
+      right 3
+      down 2
+      up 4
+      left 3
+
+      tick 150
+
+      expected_screen =
+      "======\n" +
+      "======\n" +
+      "==05==\n" +
+      "======\n" +
+      "======"
+      expect(game.screen).to eq(expected_screen)
+
+      up
+
+      expected_screen =
+      "======\n" +
+      "======\n" +
+      "==05==\n" +
+      "======\n" +
+      "======"
+      expect(game.screen).to eq(expected_screen)
+    end
   end
 end
