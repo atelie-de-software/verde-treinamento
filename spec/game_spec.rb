@@ -15,6 +15,7 @@ end
 def right(vezes = 1)
   vezes.times { game.right }
 end
+
 def left(vezes = 1)
   vezes.times { game.left }
 end
