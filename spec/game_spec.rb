@@ -156,7 +156,7 @@ RSpec.describe Game do
       up 4
       left 3
 
-      tick 300
+      tick 150
 
       expected_screen =
       "======\n" +
